@@ -10,7 +10,7 @@ const Navbar = ({ setSearch }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ Track Firebase login state
+  //  Track Firebase login state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser || null);
@@ -18,7 +18,7 @@ const Navbar = ({ setSearch }) => {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Search and auto-redirect to Home when typing
+  //  Search and auto-redirect to Home when typing
   useEffect(() => {
     const timer = setTimeout(() => {
       setSearch(inputValue);
@@ -27,9 +27,9 @@ const Navbar = ({ setSearch }) => {
       if (inputValue.trim() && location.pathname !== "/") {
         navigate("/");
       }
-    }, 500);
+    }, 400);
     return () => clearTimeout(timer);
-  }, [inputValue, setSearch, location.pathname, navigate]);
+  }, [inputValue]);
 
   const handleLogoClick = () => {
     setInputValue("");
